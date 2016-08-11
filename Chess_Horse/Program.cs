@@ -13,11 +13,12 @@ namespace Chess_Horse
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Подождите, идёт обработка");
             Create_Out_File();
             Head();
             int MaxStep = 1;
             int Record = 0;
-            const int Steps = 100000;
+            const int Steps = 1000000;
 
             for (int Step = 1; Step <= Steps; Step ++)
             {
@@ -50,6 +51,7 @@ namespace Chess_Horse
             WriteLine("================================================================");
             WriteLine("Всего шагов: " + Steps.ToString());
             WriteLine("Рекорд: " + MaxStep.ToString() + " из 64 (Шаг " + Record.ToString() + ").");
+            Console.WriteLine("Расчёт закончен.");
             Console.ReadKey();
         }
 
