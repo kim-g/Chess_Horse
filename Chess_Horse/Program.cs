@@ -10,6 +10,7 @@ namespace Chess_Horse
     class Program
     {
         static string FileName;
+        static Random Randomizer = new Random();
 
         static void Main(string[] args)
         {
@@ -26,7 +27,7 @@ namespace Chess_Horse
                 WriteLine("Шаг " + Step.ToString());
                 WriteLine("");
 
-                Game NewGame = new Game();
+                Game NewGame = new Game(Randomizer);
                 Write(NewGame.Result());
                 WriteLine("Результат: ");
                 if (NewGame.FinalStep > MaxStep)

@@ -11,9 +11,11 @@ namespace Chess_Horse
         ChessDesk Desk;
         Point Position = new Point();
         public int FinalStep = 0;
+        Random Randomizer;
 
-        public Game()
+        public Game(Random rnd)
         {
+            Randomizer = rnd;
             Desk = new ChessDesk();
 
             int CurrentStep = 1;
@@ -24,8 +26,8 @@ namespace Chess_Horse
             {
                 CurrentStep++;
 
-                int Path = new Random().Next(AvaliableSteps.Count);
-                Position = Step(Path);
+                int Path = Randomizer.Next(AvaliableSteps.Count);
+                Position = AvaliableSteps[Path];
                 Desk.Set(Position, CurrentStep);
                 AvaliableSteps = StepsAvaliable();
             }
@@ -36,7 +38,7 @@ namespace Chess_Horse
         List<Point> StepsAvaliable()
         {
             List<Point> List = new List<Point>();
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; i <= 8; i++)
             {
                 Point NewStep = Step(i);
                 if (Desk.IsAvaliable(NewStep))
@@ -75,8 +77,12 @@ namespace Chess_Horse
 
             for (int i = 7; i>=0; i--)
             {
-                for (int j = 0; j > 7; j++)
-                    Out += "|" + Desk.Get(new Point(j, i)).ToString("D2");
+                for (int j = 0; j < 8; j++)
+                {
+                    string num = Desk.Get(new Point(j, i)) == 0 ? "  " : Desk.Get(new Point(j, i)).ToString("D2");
+                    Out += "|" + num;
+                }
+                    
                 Out += "|\n|" + new string('-', 23) + "|\n";
 
             }
